@@ -115,5 +115,42 @@ Then, I moved on to hyperparameter tuning for the Random Forest Regressor, obtai
 
 > Best Parameters: {'max_depth': 20, 'min_samples_split': 2, 'n_estimators': 300}
 
-## Requirements
-## Result
+With the hyperparameters tuned, the best random forest regressors results were the following:
+
+> Mean Squared Error (MSE): 0.0740180301403758
+>
+> Mean Absolute Error (MAE): 0.19353280802664863
+>
+> R-squared (R^2): 0.5813938547640598
+
+
+## Feature Importance
+
+From the feature importance analysis, it is important to conclude that Temperature impacts people's perception of comfort the most, followed by Humidity, Loudness, and in last place particles concentration.
+
+<p align="center">
+  <img width="660" height="400" src="https://github.com/gomeslelino/IoT-Comfort-Assessment/blob/main/Pictures/feature%20importance.png">
+</p>
+
+The correlation matrix generated with pearson method with seaborn showcases a similar result.
+
+<p align="center">
+  <img width="660" height="600" src="https://github.com/gomeslelino/IoT-Comfort-Assessment/blob/main/Pictures/heatmap.png">
+</p>
+
+
+## Identifying Optimal Comfort Conditions
+
+With the model created, ranges were defined for each feature, and a python script would combine all the possible readings from these ranges to define which combination of readings would return the highest Comfort Index, or highest degree of comfort. A total of more than 160.000 combinations of input values for the features were tested, and the optimal room conditions for comfort are as follows:
+
+> Optimal Temperature: 20.0
+>
+> Optimal Humidity: 30.0
+>
+> Optimal dB Value: 40.0
+>
+> Optimal ug/m3 (10) Value: 0.0
+
+## Discussion
+
+With this model, we are able to predict what the public's comfort perception will be when we have specific Temperature, Humidity, Loudness and Particles Concentration values as input, and we were also able to identify the perfect room conditions, an interesting tool if we want lecture rooms to be optimized for comfort, facilitating learning.
