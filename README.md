@@ -43,7 +43,77 @@ Because the sensor unit and the button units were separated in the room, the dat
   <img width="660" height="300" src="https://github.com/gomeslelino/IoT-Comfort-Assessment/blob/main/Pictures/synchronize%20data.png">
 </p>
 
-## Data Description
-## Technical Overview
+## Data Preprocessing
+
+The excel file "IoTReadings" with the readings and button votes compiled was loaded into a Jupyter Notebook file for preprocessing. These were the steps for this phase:
+
+1 - Blank Values Handling: somethings the sensors would fail to send a reading for one of the specific measured elements in short intervals. KNNImputer was used do handle this cases for the readins of Humidity, Temperature, dB and particles.
+
+2 - Redistributing Votes: because the votes were uploaded to the cloud less frequently, (every 5 minutes instead of 1), a script was necessary to redistribute the vote quantities for the minutes without uploads.
+
+3 - Comfort Index: a new Feature called "Comfort Index" was calculated for each row of the data based on the amount of Yes and No votes, this column would later be used as the target column for the Machine Learning algorithm.
+
+## Model Selection, Training and Evaluation
+
+With the dataset preprocessed, we moved on to the Model Selection Phase. The regression models tested were "Linear Regression", "Decision Tree Regressor", "Random Forest Regressor", "Gradient Bosoting Regressor", "KNN Regressor" and "Support Vector Regressor". The following results were obtained, which highlighted the Random Forest Regressor as the most viable model for having the lowest NMSE and MAE and the highest R^2.
+
+> Model: Linear Regression
+> 
+> Negative Mean Squared Error (NMSE): 0.17568305062773568
+> 
+> Mean Absolute Error (MAE): 0.35803671531489906
+> 
+> R-squared (R^2): -0.010611699529072963
+
+
+> Model: Decision Tree Regressor
+> 
+> Negative Mean Squared Error (NMSE): 0.14559568728959046
+> 
+> Mean Absolute Error (MAE): 0.2084628968052881
+> 
+> R-squared (R^2): 0.07670026574252325
+
+
+> Model: Random Forest Regressor
+> 
+> Negative Mean Squared Error (NMSE): 0.082522821052955
+> 
+> Mean Absolute Error (MAE): 0.21779745989018054
+> 
+> R-squared (R^2): 0.5265889310878603
+
+
+> Model: Gradient Boosting Regressor
+>
+> Negative Mean Squared Error (NMSE): 0.10634273464772485
+>
+> Mean Absolute Error (MAE): 0.2559633047703341
+> 
+> R-squared (R^2): 0.3765981229352667
+
+
+> Model: KNN Regressor
+>
+> Negative Mean Squared Error (NMSE): 0.10894697011577875
+>
+> Mean Absolute Error (MAE): 0.24982155693815775
+>
+> R-squared (R^2): 0.3715930716113586
+
+
+> Model: Support Vector Regressor
+>
+> Negative Mean Squared Error (NMSE): 0.1366993051380376
+>
+> Mean Absolute Error (MAE): 0.2755233929820288
+>
+> R-squared (R^2): 0.21416503389236322
+
+
+Then, I moved on to hyperparameter tuning for the Random Forest Regressor, obtaining the following result:
+
+> Best Parameters: {'max_depth': 20, 'min_samples_split': 2, 'n_estimators': 300}
+
 ## Requirements
 ## Result
