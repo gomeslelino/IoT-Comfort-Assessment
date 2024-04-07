@@ -47,7 +47,7 @@ Because the sensor unit and the button units were separated in the room, the dat
 
 The excel file "IoTReadings" with the readings and button votes compiled was loaded into a Jupyter Notebook file for preprocessing. These were the steps for this phase:
 
-1 - Blank Values Handling: somethings the sensors would fail to send a reading for one of the specific measured elements in short intervals. KNNImputer was used do handle this cases for the readins of Humidity, Temperature, dB and particles.
+1 - Blank Values Handling: somethings the sensors would fail to send a reading for one of the specific measured elements in short intervals. KNNImputer was used do handle this cases for the readins of humidity, temperature, dB and particles.
 
 2 - Redistributing Votes: because the votes were uploaded to the cloud less frequently (every 5 minutes instead of 1), a script was necessary to redistribute the vote quantities for the minutes without uploads.
 
@@ -55,7 +55,7 @@ The excel file "IoTReadings" with the readings and button votes compiled was loa
 
 ## Model Selection, Training and Evaluation
 
-With the dataset preprocessed, we moved on to the Model Selection Phase. The regression models tested were "Linear Regression", "Decision Tree Regressor", "Random Forest Regressor", "Gradient Bosoting Regressor", "KNN Regressor" and "Support Vector Regressor". The following results were obtained, which highlighted the Random Forest Regressor as the most viable model for having the lowest NMSE and MAE and the highest R^2.
+With the dataset preprocessed, we moved on to the Model Selection Phase. The regression models tested were "Linear Regression", "Decision Tree Regressor", "Random Forest Regressor", "Gradient Boosting Regressor", "KNN Regressor" and "Support Vector Regressor". The following results were obtained, which highlighted the Random Forest Regressor as the most viable model for having the lowest NMSE and MAE and the highest R^2.
 
 > Model: Linear Regression
 > 
@@ -126,7 +126,7 @@ With the hyperparameters tuned, the best random forest regressors results were t
 
 ## Feature Importance
 
-From the feature importance analysis, it is important to conclude that Temperature impacts people's perception of comfort the most, followed by Humidity, Loudness, and in last place particles concentration.
+From the feature importance analysis, we could conclude that temperature impacts people's perception of comfort the most, followed by humidity, loudness, and in last place particles concentration, specifically larger particles.
 
 <p align="center">
   <img width="660" height="400" src="https://github.com/gomeslelino/IoT-Comfort-Assessment/blob/main/Pictures/feature%20importance.png">
@@ -153,4 +153,4 @@ With the model created, ranges were defined for each feature, and a python scrip
 
 ## Discussion
 
-With this model, we are able to predict what the public's comfort perception will be when we have specific Temperature, Humidity, Loudness and Particles Concentration values as input, and we were also able to identify the perfect room conditions, an interesting tool if we want lecture rooms to be optimized for comfort, facilitating learning.
+With this model, we are able to predict what the public's comfort perception will be when we have specific temperature, humidity, loudness and particles concentration values in a room as input, and we were also able to identify the perfect room conditions, an interesting tool if we want lecture rooms to be optimized for comfort, facilitating learning.
