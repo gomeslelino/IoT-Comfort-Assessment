@@ -49,7 +49,7 @@ The excel file "IoTReadings" with the readings and button votes compiled was loa
 
 1 - Blank Values Handling: somethings the sensors would fail to send a reading for one of the specific measured elements in short intervals. KNNImputer was used do handle this cases for the readins of Humidity, Temperature, dB and particles.
 
-2 - Redistributing Votes: because the votes were uploaded to the cloud less frequently, (every 5 minutes instead of 1), a script was necessary to redistribute the vote quantities for the minutes without uploads.
+2 - Redistributing Votes: because the votes were uploaded to the cloud less frequently (every 5 minutes instead of 1), a script was necessary to redistribute the vote quantities for the minutes without uploads.
 
 3 - Comfort Index: a new Feature called "Comfort Index" was calculated for each row of the data based on the amount of Yes and No votes, this column would later be used as the target column for the Machine Learning algorithm.
 
